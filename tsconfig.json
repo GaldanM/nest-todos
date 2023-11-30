@@ -1,4 +1,7 @@
 {
+	"ts-node": {
+		"swc": true
+	},
 	"compilerOptions": {
 		// Type Checking
 		"allowUnreachableCode": false,
@@ -10,7 +13,7 @@
 		"noImplicitOverride": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
-		"noPropertyAccessFromIndexSignature": true,
+		"noPropertyAccessFromIndexSignature": false,
 		"noUncheckedIndexedAccess": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,

@@ -1,7 +1,12 @@
 import { Module } from "@nestjs/common"
-import { TodoService } from "./todo.service.js"
+import { TodoInfrastructureModule } from "../infrastructure/todo.infrastructure.module.js"
+import { GetTodoQuery } from "./query/get-todo.query.js"
+
+const queries = [GetTodoQuery]
 
 @Module({
-  providers: [TodoService],
+  providers: [...queries],
+  imports: [TodoInfrastructureModule],
+  exports: [...queries],
 })
 export class TodoDomainModule {}

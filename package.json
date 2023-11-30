@@ -16,16 +16,26 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:cov": "vitest run --coverage",
-		"test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false"
+		"test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false",
+		"test:e2e": "npx cucumber-js"
 	},
 	"dependencies": {
+		"@": "nestjs/typeorm",
 		"@nestjs/common": "^10.0.0",
 		"@nestjs/core": "^10.0.0",
 		"@nestjs/platform-express": "^10.0.0",
+		"@nestjs/typeorm": "^10.0.1",
+		"class-validator": "^0.14.0",
+		"pg": "^8.11.3",
 		"reflect-metadata": "^0.1.13",
-		"rxjs": "^7.8.1"
+		"rxjs": "^7.8.1",
+		"typeorm": "^0.3.17",
+		"uuid": "^9.0.1"
 	},
 	"devDependencies": {
+		"@cucumber/cucumber": "^10.0.1",
+		"@cucumber/messages": "^0.0.0",
+		"@cucumber/pretty-formatter": "^1.0.0",
 		"@nestjs/cli": "^10.0.0",
 		"@nestjs/schematics": "^10.0.0",
 		"@nestjs/testing": "^10.0.0",
@@ -38,6 +48,8 @@
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"@vitest/coverage-v8": "^0.34.6",
+		"chai": "^4.3.10",
+		"chai-http": "^4.4.0",
 		"eslint": "^8.42.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.0",
@@ -45,6 +57,7 @@
 		"prettier": "^3.0.0",
 		"source-map-support": "^0.5.21",
 		"supertest": "^6.3.3",
+		"ts-node": "^10.9.1",
 		"typescript": "^5.1.3",
 		"unplugin-swc": "^1.4.3",
 		"vitest": "^0.34.6"

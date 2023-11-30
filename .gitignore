@@ -11,3 +11,6 @@
 # Tests
 /coverage
 /.nyc_output
+
+# Database
+/pgsql

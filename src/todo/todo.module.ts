@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common"
-import { TodoHttpModule } from "./http/todo.http.module.js"
-import { TodoInfrastructureModule } from "./infrastructure/todo.infrastructure.module.js"
+import { TodoMapper } from "./todo.mapper.js"
 
 @Module({
-  imports: [TodoHttpModule, TodoInfrastructureModule],
+  providers: [TodoMapper],
+  exports: [TodoMapper],
 })
 export class TodoModule {}
