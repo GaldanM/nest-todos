@@ -7,7 +7,7 @@ import { TodoInterfaceModule } from "./todo/interface/todo.interface.module.js"
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ".dev.env",
+      envFilePath: ".env",
       validate: validateConfig,
     }),
     TodoInterfaceModule,

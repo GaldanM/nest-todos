@@ -1,17 +1,17 @@
-import { Module } from "@nestjs/common"
+import { Module, type Provider } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
-import { IdGenerator } from "../domain/ports/id-generator/idGenerator.js"
-import { TodoRepository } from "../domain/ports/repositories/todo.repository.js"
+import { ID_GENERATOR_TOKEN } from "../core/application/ports/id-generator/id-generator.js"
+import { TodoRepository } from "../core/application/ports/repositories/todo.repository.js"
 import { TodoModule } from "../todo.module.js"
-import { UUIDGenerator } from "./adapters/id-generator/uuidGenerator.js"
+import { UUIDGenerator } from "./adapters/id-generator/uuid-generator.js"
 import { TodoRepositoryTypeOrm } from "./adapters/repositories/todo.repository.typeorm.js"
 import { TodoTypeOrm } from "./entities/todo.typeorm.js"
 
 const ormEntities = [TodoTypeOrm]
 
-const repositories = [{ provide: TodoRepository, useClass: TodoRepositoryTypeOrm }]
-const idGenerators = [{ provide: IdGenerator, useClass: UUIDGenerator }]
+const repositories: Provider[] = [{ provide: TodoRepository, useClass: TodoRepositoryTypeOrm }]
+const idGenerators: Provider[] = [{ provide: ID_GENERATOR_TOKEN, useValue: UUIDGenerator }]
 const adapters = [...repositories, ...idGenerators]
 
 @Module({

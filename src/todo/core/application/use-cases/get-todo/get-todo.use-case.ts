@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common"
-import type { Todo } from "../../entities/todo.js"
+import type { Todo } from "../../../domain/entities/todo.js"
 import { TodoRepository } from "../../ports/repositories/todo.repository.js"
 
 @Injectable()

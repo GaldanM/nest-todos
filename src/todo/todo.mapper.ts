@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common"
 import type { Mapper } from "../lib/mapper.js"
-import type { Todo, TodoProps } from "./domain/entities/todo.js"
+import type { Todo, TodoProps } from "./core/domain/entities/todo.js"
 import type { TodoTypeOrm } from "./infrastructure/entities/todo.typeorm.js"
 import type { TodoDto } from "./interface/http/dto/todo.dto.js"
 

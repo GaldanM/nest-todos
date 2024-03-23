@@ -1,5 +1,5 @@
-import { beforeAll, describe, expect, it, type MockInstance, vi } from "vitest"
-import type { IdGenerator } from "../../ports/id-generator/idGenerator.js"
+import { beforeEach, describe, expect, it, type MockInstance, vi } from "vitest"
+import type { IdGenerator } from "../../ports/id-generator/id-generator.js"
 import type { TodoRepository } from "../../ports/repositories/todo.repository.js"
 import { CreateTodoUseCase } from "./create-todo.use-case.js"
 
@@ -7,21 +7,21 @@ type SpyOf<Fn extends (...args: any[]) => any> = MockInstance<Parameters<Fn>, Re
 
 describe("CreateTodoUseCase", () => {
   let useCase: CreateTodoUseCase
-  let idGeneratorSpy: SpyOf<IdGenerator<string>["generate"]>
-  let todoInsertSpy: SpyOf<TodoRepository["insert"]>
+  let idGeneratorSpy: SpyOf<IdGenerator>
+  let todoRepoInsertSpy: SpyOf<TodoRepository["insert"]>
 
-  beforeAll(async () => {
-    const idGenerator: Partial<IdGenerator<string>> = {
-      generate: vi.fn(),
-    }
+  beforeEach(async () => {
+    vi.resetAllMocks()
+
+    const idGenerator = vi.fn()
     const todoRepository: Partial<TodoRepository> = {
       insert: vi.fn(),
     }
 
-    useCase = new CreateTodoUseCase(idGenerator as IdGenerator<string>, todoRepository as TodoRepository)
+    useCase = new CreateTodoUseCase(idGenerator as IdGenerator, todoRepository as TodoRepository)
 
-    idGeneratorSpy = vi.spyOn(idGenerator, "generate")
-    todoInsertSpy = vi.spyOn(todoRepository, "insert")
+    todoRepoInsertSpy = vi.spyOn(todoRepository, "insert")
+    idGeneratorSpy = idGenerator
   })
 
   it("Should create a todo", async () => {
@@ -31,9 +31,9 @@ describe("CreateTodoUseCase", () => {
     await useCase.execute(todoToCreate.title)
 
     expect(idGeneratorSpy).toHaveBeenCalled()
-    expect(todoInsertSpy).toHaveBeenCalledWith(
+    expect(todoRepoInsertSpy).toHaveBeenCalledWith(
       expect.objectContaining({
-        _id: todoToCreate.id,
+        id: todoToCreate.id,
         props: {
           title: todoToCreate.title,
           isCompleted: todoToCreate.isCompleted,

@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { DomainEntity } from "../../../lib/entities/domain.entity.js"
+import { DomainEntity } from "../../../../lib/entities/domain.entity.js"
 
 export const TodoSchema = z.object({
   title: z.string(),

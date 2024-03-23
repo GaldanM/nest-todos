@@ -12,7 +12,7 @@ export abstract class DomainEntity<EntityProps> {
   protected readonly props: EntityProps
   protected readonly validationSchema: z.ZodType<EntityProps>
 
-  public constructor({ id, props }: CreateEntityProps<EntityProps>, validationSchema: z.ZodType<EntityProps>) {
+  protected constructor({ id, props }: CreateEntityProps<EntityProps>, validationSchema: z.ZodType<EntityProps>) {
     this.id = id
     this.props = props
     this.validationSchema = validationSchema
