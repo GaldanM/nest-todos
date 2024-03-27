@@ -29,11 +29,7 @@ export type PaginatedQueryParams = {
 export abstract class RepositoryPort<Entity extends DomainEntity<EntityProps>, EntityProps> {
   public abstract insert(entity: Entity | Entity[]): Promise<void>
 
-  public abstract findOneById(id: string): Promise<Entity | null>
-
   public abstract findAll(): Promise<Entity[]>
 
   public abstract findAllPaginated(params: PaginatedQueryParams): Promise<Paginated<Entity>>
-
-  public abstract delete(entity: Entity): Promise<boolean>
 }

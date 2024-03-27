@@ -5,9 +5,9 @@ import type { OrmEntity } from "./entities/orm.entity.js"
 export abstract class Mapper<DomainEntityProps> {
   abstract toOrmFromDomain(domainEntity: DomainEntity<DomainEntityProps>): OrmEntity
 
-  // abstract toDomainFromOrm(ormEntity: OrmEntity): DomainEntity<DomainEntityProps>
+  abstract toDomainFromOrm(ormEntity: OrmEntity): DomainEntity<DomainEntityProps>
 
-  // abstract toDomainFromDto(dtoEntity: DtoEntity): DomainEntity<DomainEntityProps>
+  abstract toDomainFromDto(dtoEntity: DtoEntity): DomainEntity<DomainEntityProps>
 
   abstract toDTOFromDomain(domainEntity: DomainEntity<DomainEntityProps>): DtoEntity
 }

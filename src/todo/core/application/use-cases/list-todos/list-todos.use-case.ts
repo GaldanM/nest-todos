@@ -3,10 +3,10 @@ import type { Todo } from "../../../domain/entities/todo.js"
 import { TodoRepository } from "../../ports/repositories/todo.repository.js"
 
 @Injectable()
-export class GetTodoUseCase {
+export class ListTodosUseCase {
   constructor(@Inject(TodoRepository) private readonly todoRepository: TodoRepository) {}
 
-  async execute(id: string): Promise<Todo | null> {
-    return this.todoRepository.findOneById(id)
+  async execute(): Promise<Todo[]> {
+    return this.todoRepository.findAll()
   }
 }

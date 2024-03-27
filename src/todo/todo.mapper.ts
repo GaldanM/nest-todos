@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common"
 import type { Mapper } from "../lib/mapper.js"
-import type { Todo, TodoProps } from "./core/domain/entities/todo.js"
+import { Todo, type TodoProps } from "./core/domain/entities/todo.js"
 import type { TodoTypeOrm } from "./infrastructure/entities/todo.typeorm.js"
 import type { TodoDto } from "./interface/http/dto/todo.dto.js"
 
@@ -14,25 +14,25 @@ export class TodoMapper implements Mapper<TodoProps> {
     }
   }
 
-  // toDomainFromOrm(todoOrm: TodoTypeOrm): Todo {
-  //   return new Todo({
-  //     id: todoOrm.id,
-  //     props: {
-  //       title: todoOrm.title,
-  //       isCompleted: todoOrm.isCompleted,
-  //     },
-  //   })
-  // }
-  //
-  // toDomainFromDto(todoDto: TodoDto): Todo {
-  //   return new Todo({
-  //     id: todoDto.id,
-  //     props: {
-  //       title: todoDto.title,
-  //       isCompleted: todoDto.isCompleted,
-  //     },
-  //   })
-  // }
+  toDomainFromOrm(todoOrm: TodoTypeOrm): Todo {
+    return new Todo({
+      id: todoOrm.id,
+      props: {
+        title: todoOrm.title,
+        isCompleted: todoOrm.isCompleted,
+      },
+    })
+  }
+
+  toDomainFromDto(todoDto: TodoDto): Todo {
+    return new Todo({
+      id: todoDto.id,
+      props: {
+        title: todoDto.title,
+        isCompleted: todoDto.isCompleted,
+      },
+    })
+  }
 
   toDTOFromDomain(todoDomain: Todo): TodoDto {
     return {

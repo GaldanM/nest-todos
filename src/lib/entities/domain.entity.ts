@@ -2,7 +2,7 @@ import type { z } from "zod"
 
 export type ID = string
 
-interface CreateEntityProps<T> {
+export interface InstantiateEntityProps<T> {
   id: ID
   props: T
 }
@@ -12,7 +12,7 @@ export abstract class DomainEntity<EntityProps> {
   protected readonly props: EntityProps
   protected readonly validationSchema: z.ZodType<EntityProps>
 
-  protected constructor({ id, props }: CreateEntityProps<EntityProps>, validationSchema: z.ZodType<EntityProps>) {
+  protected constructor({ id, props }: InstantiateEntityProps<EntityProps>, validationSchema: z.ZodType<EntityProps>) {
     this.id = id
     this.props = props
     this.validationSchema = validationSchema

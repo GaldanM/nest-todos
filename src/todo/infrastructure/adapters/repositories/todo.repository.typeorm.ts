@@ -14,31 +14,18 @@ export class TodoRepositoryTypeOrm implements TodoRepository {
     private readonly todoMapper: TodoMapper,
   ) {}
 
-  public async findAll(): Promise<Todo[]> {
-    throw new Error("Method not implemented.")
-  }
-
-  public async findAllPaginated(): Promise<Paginated<Todo>> {
-    throw new Error("Method not implemented.")
-  }
-
-  public async findOneById(): Promise<Todo | null> {
-    throw new Error("Method not implemented.")
-    // const todoOrm = await this.todoOrmRepository.findOne({ where: { id } })
-    //
-    // if (!todoOrm) {
-    //   return null
-    // }
-    //
-    // return this.todoMapper.toDomainFromOrm(todoOrm)
-  }
-
   public async insert(todoDomain: Todo): Promise<void> {
     const todoOrm = this.todoMapper.toOrmFromDomain(todoDomain)
     await this.todoOrmRepository.insert(todoOrm)
   }
 
-  public async delete(): Promise<boolean> {
+  public async findAll(): Promise<Todo[]> {
+    const todosOrm = await this.todoOrmRepository.find()
+
+    return todosOrm.map(this.todoMapper.toDomainFromOrm)
+  }
+
+  public async findAllPaginated(): Promise<Paginated<Todo>> {
     throw new Error("Method not implemented.")
   }
 }

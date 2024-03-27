@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { DomainEntity } from "../../../../lib/entities/domain.entity.js"
+import { DomainEntity, type InstantiateEntityProps } from "../../../../lib/entities/domain.entity.js"
 
 export const TodoSchema = z.object({
   title: z.string(),
@@ -13,10 +13,17 @@ export interface CreateTodoProps {
 }
 
 export class Todo extends DomainEntity<TodoProps> {
+  /**
+   * Should be used in mapper only
+   */
+  constructor(instantiateTodoProps: InstantiateEntityProps<TodoProps>) {
+    super(instantiateTodoProps, TodoSchema)
+  }
+
   public static create(createProps: CreateTodoProps) {
     const todoProps = { title: createProps.title, isCompleted: false }
 
-    return new Todo({ id: createProps.id, props: todoProps }, TodoSchema)
+    return new Todo({ id: createProps.id, props: todoProps })
   }
 
   public get title() {
